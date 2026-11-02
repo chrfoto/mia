@@ -6,7 +6,7 @@
     <title>Mis XV Años | Mia Daniela</title>
     
     <!-- Fuentes Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,18 +20,16 @@
             theme: {
                 extend: {
                     colors: {
-                        'off-white': '#FAFAF8', // Blanco cálido
-                        'cream': '#F3EFE9',     // Tonos piedra cálidos (fondo foto)
-                        'dusty-rose': '#D9B48F',// Dorados suaves
-                        'sand': '#E2D0BE',      
-                        'sky-blue': '#84BEDA',  // Azul cielo (Color del vestido)
-                        'charcoal': '#404040'   // Texto oscuro/cálido
+                        'off-white': '#FAFAF8', // Fondo principal cálido
+                        'cream': '#F4EFEA',     // Cajas de texto y tarjetas
+                        'sky-accent': '#84BEDA',// Acentos en azul cielo (vestido)
+                        'sand': '#E8DFD5',      // Botones secundarios
+                        'charcoal': '#3A3E38'   // Texto principal
                     },
                     fontFamily: {
                         'cinzel': ['Cinzel', 'serif'],
                         'cormorant': ['Cormorant Garamond', 'serif'],
                         'montserrat': ['Montserrat', 'sans-serif'],
-                        'great-vibes': ['Great Vibes', 'cursive'],
                     }
                 }
             }
@@ -39,493 +37,450 @@
     </script>
 
     <style>
-        /* Estilos base y utilidades */
-        body { background-color: #EAEAEA; color: #404040; font-family: 'Montserrat', sans-serif; }
-        h1, h2, h3, .font-cinzel { font-family: 'Cinzel', serif; }
-        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
-        
-        /* Contenedor Móvil para PC */
-        #mobile-wrapper {
+        /* Estilos base para simular vista vertical de celular en PC */
+        body { 
+            background-color: #2b2b2b; 
+            color: #3A3E38; 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor tipo celular centralizado */
+        #mobile-frame {
             width: 100%;
             max-width: 450px;
-            margin: 0 auto;
             min-height: 100vh;
             background-color: #FAFAF8;
             position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             overflow-x: hidden;
-            box-shadow: 0 0 40px rgba(0,0,0,0.15);
-            /* Transforma el contenedor en el "viewport" para los elementos fijos (fixed) */
-            transform: translateZ(0); 
         }
 
-        /* Tapiz de fondo general */
-        .bg-pattern {
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-        }
-
-        /* Glassmorphism */
+        h1, h2, h3, .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+         
+        /* Glassmorphism elegante */
         .glass {
-            background: rgba(243, 239, 233, 0.85);
+            background: rgba(244, 239, 234, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        /* Máscaras de desvanecimiento para fotos (Top y Bottom) */
-        .mask-bottom {
-            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-        }
-        .mask-both {
+        /* Desvanecidos oníricos para imágenes */
+        .mask-dreamy {
             -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
             mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
         }
 
         /* Animaciones (Scroll Reveal) */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        /* Animaciones UI */
+         
         .fade-out { opacity: 0; pointer-events: none; transition: opacity 0.8s ease; }
-        @keyframes pulse-soft { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes pulse-soft { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
         .animate-pulse-soft { animation: pulse-soft 3s infinite; }
-        
-        /* Toast Notification */
+         
         #toast { transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; transform: translateY(100%); opacity: 0; z-index: 9999; }
         #toast.show { transform: translateY(0); opacity: 1; }
     </style>
 </head>
-<body class="antialiased bg-gray-200">
+<body class="antialiased relative">
 
-    <div id="mobile-wrapper" class="bg-pattern text-charcoal">
+    <div id="mobile-frame">
 
         <!-- ================= 1. SPLASH SCREEN (SOBRE) ================= -->
-        <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-off-white transition-opacity duration-1000">
-            <svg class="w-16 h-16 text-sky-blue mb-6 animate-pulse-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4"></path></svg>
-            Mia Daniela
-        </h1>
-        <button id="btn-abrir" class="px-8 py-3 bg-charcoal text-white font-montserrat text-xs tracking-widest uppercase rounded-full hover:bg-sky-blue transition duration-300 shadow-md">
-            Abrir Invitación
-        </button>
-    </div>
-
-    <!-- Contenedor Principal (Oculto hasta abrir) -->
-    <div id="main-content" class="hidden">
-
-        <!-- ================= 2. HERO (PORTADA) ================= -->
-        <section class="relative w-full h-screen flex flex-col items-center justify-end pb-12 overflow-hidden">
-            <!-- PORTADA ACTUALIZADA (DESVANECIDA HACIA ABAJO) -->
-            <div class="absolute inset-0 z-0 mask-bottom">
-                <img src="https://drive.google.com/thumbnail?id=1eGeb_sfGqnh3XdX88SLiogxWy3Cges8_&sz=w1200" alt="Portada" class="w-full h-full object-cover object-top">
-            </div>
-            
-            <div class="relative z-30 w-full text-center px-4 mb-6">
-                <p class="font-cinzel text-sm md:text-base tracking-[0.4em] uppercase mb-1 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">Mis XV Años</p>
-                <h1 class="text-6xl text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)] font-great-vibes leading-normal py-2">
-                    Mia Daniela
-                </h1>
-            </div>
-            
-            <div class="relative z-30 flex flex-col items-center animate-bounce">
-                <p class="font-montserrat text-xs tracking-widest text-white mb-2 font-semibold drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">Deslizar</p>
-                <i class="fa-solid fa-chevron-down text-white text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"></i>
-            </div>
-        </section>
-
-        <!-- ================= 3. INSPIRACIÓN ================= -->
-        <section class="py-20 px-6 max-w-3xl mx-auto text-center reveal">
-            <i class="fa-solid fa-quote-left text-sky-blue text-3xl mb-6 opacity-50"></i>
-            <p class="font-cormorant italic text-2xl md:text-3xl leading-relaxed text-charcoal mb-4">
-                "Hay noches que se convierten en recuerdos para toda la vida… y hoy, la magia de un sueño se viste de ilusión para celebrar quince años de amor. <br><br> Con el corazón lleno de alegría, te invitamos a ser parte de una noche que quedará para siempre en nuestra historia."
-            </p>
-        </section>
-
-        <!-- ================= BANNER TRANSICIÓN 1 ================= -->
-        <div class="w-full relative h-[60vh] md:h-[80vh] mask-both reveal">
-            <img src="https://drive.google.com/thumbnail?id=10iMgRrMZnk5KrhPqTOPatQQ6ZEpJ38HK&sz=w1200" class="w-full h-full object-cover object-center" alt="Transición">
+        <div id="splash-screen" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-off-white transition-opacity duration-1000 px-6 text-center">
+            <svg class="w-16 h-16 text-sky-accent mb-6 animate-pulse-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4"></path></svg>
+            <p class="font-montserrat text-xs tracking-[0.3em] uppercase mb-3 text-sky-accent font-semibold">Mis XV Años</p>
+            <h1 class="text-4xl md:text-5xl text-charcoal mb-4 leading-tight font-cinzel">
+                Mia Daniela
+            </h1>
+            <p class="font-cormorant italic text-xl text-charcoal/80 mb-10">Te invito a celebrar este sueño</p>
+            <button id="btn-abrir" class="px-8 py-3 bg-charcoal text-white font-montserrat text-xs tracking-widest uppercase rounded-full hover:bg-sky-accent transition duration-300 shadow-md">
+                Abrir Invitación
+            </button>
         </div>
 
-        <!-- ================= 4. CUENTA REGRESIVA ================= -->
-        <section class="relative py-24 px-4 overflow-hidden reveal">
-            <div class="absolute inset-0 z-0 mask-both">
-                <img src="https://drive.google.com/thumbnail?id=1m3JQ_RRfk_bYg153lRPCH73a3x58kPRe&sz=w1200" class="w-full h-full object-cover opacity-90" alt="Fondo Timer">
-            </div>
-            
-            <div class="relative z-10 max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-cinzel text-charcoal mb-10 drop-shadow-sm glass inline-block px-6 py-2 rounded-full">19 . 12 . 2026</h2>
-                
-                <div class="flex justify-center gap-3 md:gap-8 font-montserrat" id="countdown">
-                    <!-- Se llena con JS -->
+        <!-- Contenedor Principal -->
+        <div id="main-content" class="hidden">
+
+            <!-- ================= 2. HERO (PORTADA) ================= -->
+            <section class="relative w-full h-[90vh] flex flex-col items-center justify-between pb-8">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://drive.google.com/uc?export=view&id=1eGeb_sfGqnh3XdX88SLiogxWy3Cges8_" alt="Portada Mia" class="w-full h-full object-cover object-top">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#FAFAF8] via-transparent to-black/30"></div>
                 </div>
-            </div>
-        </section>
-
-        <!-- ================= 5. PADRES Y PADRINOS ================= -->
-        <section class="py-24 px-6 max-w-4xl mx-auto text-center reveal">
-            <h2 class="text-3xl font-cinzel mb-12 text-sky-blue">Con el amor de mis padres</h2>
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="glass p-8 rounded-3xl shadow-sm md:col-span-2 max-w-xl mx-auto w-full">
-                    <p class="font-montserrat text-xs tracking-widest uppercase mb-4 opacity-70">Mis Padres</p>
-                    <p class="font-cormorant text-2xl text-charcoal">Leodegario Huitron Gallegos</p>
-                    <p class="font-cormorant text-2xl text-charcoal mt-2">&</p>
-                    <p class="font-cormorant text-2xl text-charcoal mt-2">Rubi Garcia Sanchez</p>
+                 
+                <div class="relative z-10 w-full text-center pt-12 px-4">
+                    <span class="inline-block px-4 py-1 rounded-full glass font-montserrat text-xs tracking-[0.25em] uppercase text-charcoal mb-2 shadow-sm">19 . 12 . 2026</span>
                 </div>
-            </div>
-            
-            <div class="mt-8 glass p-8 rounded-3xl shadow-sm max-w-xl mx-auto w-full">
-                <p class="font-montserrat text-xs tracking-widest uppercase mb-4 opacity-70">Mis Padrinos</p>
-                <p class="font-cormorant text-xl text-charcoal italic">Martin Huitron Gallegos</p>
-                <p class="font-cormorant text-xl text-charcoal italic mt-2">&</p>
-                <p class="font-cormorant text-xl text-charcoal italic mt-2">Darine Martinez Garcia</p>
-            </div>
-        </section>
+                 
+                <div class="relative z-10 w-full text-center px-4 mb-4">
+                    <p class="font-montserrat text-xs tracking-[0.3em] uppercase mb-2 text-charcoal font-semibold drop-shadow-sm">Mis XV Años</p>
+                    <h1 class="text-5xl md:text-6xl text-charcoal font-cinzel drop-shadow-md">
+                        Mia Daniela
+                    </h1>
+                </div>
+                 
+                <div class="relative z-10 flex flex-col items-center animate-bounce">
+                    <p class="font-montserrat text-[10px] tracking-widest text-charcoal mb-1 font-semibold uppercase">Deslizar</p>
+                    <i class="fa-solid fa-chevron-down text-charcoal text-sm"></i>
+                </div>
+            </section>
 
-        <!-- ================= BANNER TRANSICIÓN 2 ================= -->
-        <div class="w-full relative h-[60vh] md:h-[80vh] mask-both reveal">
-            <img src="https://drive.google.com/thumbnail?id=1suoLSCN3OPA8KSl7tFNQNzwVR6GvlI7_&sz=w1200" class="w-full h-full object-cover object-center" alt="Transición">
-        </div>
+            <!-- ================= 3. INSPIRACIÓN & CUENTA REGRESIVA UNIFICADA ================= -->
+            <section class="py-12 px-6 max-w-lg mx-auto text-center reveal">
+                <i class="fa-solid fa-quote-left text-sky-accent text-2xl mb-4 opacity-70"></i>
+                <p class="font-cormorant italic text-xl md:text-2xl leading-relaxed text-charcoal mb-8">
+                    "Hay noches que se convierten en recuerdos para toda la vida… y hoy, la magia de un sueño se viste de ilusión para celebrar quince años de amor.<br><br>Con el corazón lleno de alegría, te invitamos a ser parte de una noche que quedará para siempre en nuestra historia."
+                </p>
 
-        <!-- ================= 6. LA CELEBRACIÓN (LUGARES) ================= -->
-        <section class="py-24 px-4 max-w-5xl mx-auto reveal">
-            <h2 class="text-3xl font-cinzel text-center text-charcoal mb-16">La Celebración</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8 justify-center">
-                
-                <!-- CEREMONIA RELIGIOSA -->
-                <div class="glass rounded-3xl overflow-hidden shadow-md flex flex-col w-full">
-                    <div class="p-8 text-center flex-grow flex flex-col justify-between">
+                <!-- Cuenta Regresiva Integrada -->
+                <div class="glass p-6 rounded-3xl shadow-sm mt-6">
+                    <h2 class="text-xl font-cinzel text-charcoal mb-6 tracking-widest">Faltan</h2>
+                    <div class="flex justify-center gap-3 font-montserrat" id="countdown">
+                        <!-- Se llena con JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= BANNER TRANSICIÓN 1 (B/N) ================= -->
+            <div class="w-full relative h-[65vh] mask-dreamy reveal my-4">
+                <img src="https://drive.google.com/uc?export=view&id=1m3JQ_RRfk_bYg153lRPCH73a3x58kPRe" class="w-full h-full object-cover" alt="Mia Blanco y Negro">
+            </div>
+
+            <!-- ================= 4. PADRES Y PADRINOS ================= -->
+            <section class="py-12 px-6 max-w-lg mx-auto text-center reveal">
+                <h2 class="text-2xl font-cinzel mb-8 text-sky-accent font-semibold">Con la bendición de nuestros padres</h2>
+                <div class="space-y-6">
+                    <div class="glass p-6 rounded-2xl shadow-sm">
+                        <p class="font-montserrat text-[10px] tracking-widest uppercase mb-2 opacity-70">Padres de la Quinceañera</p>
+                        <p class="font-cormorant text-xl text-charcoal font-semibold">Leodegario Huitron Gallegos</p>
+                        <p class="font-cormorant text-xl text-charcoal font-semibold mt-1">Rubi Garcia Sanchez</p>
+                    </div>
+                </div>
+                 
+                <div class="mt-8 glass p-6 rounded-2xl shadow-sm">
+                    <p class="font-montserrat text-[10px] tracking-widest uppercase mb-2 opacity-70">Padrinos de Velación</p>
+                    <p class="font-cormorant text-xl text-charcoal italic font-semibold">Martin Huitron Gallegos y Darine Martinez Garcia</p>
+                </div>
+            </section>
+
+            <!-- ================= BANNER TRANSICIÓN 2 ================= -->
+            <div class="w-full relative h-[65vh] mask-dreamy reveal my-4">
+                <img src="https://drive.google.com/uc?export=view&id=1suoLSCN3OPA8KSl7tFNQNzwVR6GvlI7_" class="w-full h-full object-cover" alt="Mia Transición 2">
+            </div>
+
+            <!-- ================= 5. LA CELEBRACIÓN (LUGARES) ================= -->
+            <section class="py-12 px-4 max-w-lg mx-auto reveal">
+                <h2 class="text-2xl font-cinzel text-center text-charcoal mb-10 font-semibold">La Celebración</h2>
+                 
+                <div class="space-y-6">
+                    <!-- CEREMONIA RELIGIOSA -->
+                    <div class="glass rounded-3xl overflow-hidden shadow-md p-6 text-center flex flex-col justify-between">
                         <div>
-                            <i class="fa-solid fa-church text-4xl text-sky-blue mb-4"></i>
-                            <h3 class="font-cinzel text-2xl mb-2">Ceremonia Religiosa</h3>
-                            <p class="font-cormorant text-xl mb-4 italic">Parroquia de San Jose</p>
-                            
-                            <div class="font-montserrat text-sm space-y-2 mb-8 opacity-80">
-                                <p><i class="fa-regular fa-calendar mr-2"></i>19 de Diciembre 2026</p>
+                            <i class="fa-solid fa-church text-3xl text-sky-accent mb-3"></i>
+                            <h3 class="font-cinzel text-xl mb-1 font-semibold">Ceremonia Religiosa</h3>
+                            <p class="font-cormorant text-lg mb-3 italic">Parroquia de San José</p>
+                            <div class="font-montserrat text-xs space-y-1 mb-6 opacity-80">
+                                <p><i class="fa-regular fa-calendar mr-2"></i>19 de Diciembre, 2026</p>
                                 <p><i class="fa-regular fa-clock mr-2"></i>4:00 PM</p>
                             </div>
                         </div>
-                        
-                        <div class="space-y-3 mt-4">
-                            <!-- REEMPLAZAR ENLACE MAPS -->
-                            <a href="URL_MAPS_CEREMONIA" target="_blank" class="block w-full py-3 border border-sky-blue text-sky-blue rounded-full font-montserrat text-xs uppercase tracking-widest hover:bg-sky-blue hover:text-white transition">
-                                Ver Ubicación
-                            </a>
-                        </div>
+                        <a href="https://maps.app.goo.gl/2VV9CiDwroFDyu9JA" target="_blank" class="block w-full py-3 border border-sky-accent text-sky-accent rounded-full font-montserrat text-[10px] uppercase tracking-widest hover:bg-sky-accent hover:text-white transition">
+                            Ver Ubicación en Maps
+                        </a>
                     </div>
-                </div>
 
-                <!-- RECEPCIÓN -->
-                <div class="glass rounded-3xl overflow-hidden shadow-md flex flex-col mx-auto w-full">
-                    <div class="p-8 text-center flex-grow flex flex-col justify-between">
+                    <!-- RECEPCIÓN -->
+                    <div class="glass rounded-3xl overflow-hidden shadow-md p-6 text-center flex flex-col justify-between">
                         <div>
-                            <i class="fa-solid fa-champagne-glasses text-4xl text-sky-blue mb-4"></i>
-                            <h3 class="font-cinzel text-2xl mb-2">Recepción</h3>
-                            <p class="font-cormorant text-xl mb-4 italic">Hacienda Figueroa</p>
-                            
-                            <div class="font-montserrat text-sm space-y-2 mb-8 opacity-80">
-                                <p><i class="fa-regular fa-calendar mr-2"></i>19 de Diciembre 2026</p>
+                            <i class="fa-solid fa-champagne-glasses text-3xl text-sky-accent mb-3"></i>
+                            <h3 class="font-cinzel text-xl mb-1 font-semibold">Recepción</h3>
+                            <p class="font-cormorant text-lg mb-3 italic">Hacienda Figueroa</p>
+                            <div class="font-montserrat text-xs space-y-1 mb-6 opacity-80">
+                                <p><i class="fa-regular fa-calendar mr-2"></i>19 de Diciembre, 2026</p>
                                 <p><i class="fa-regular fa-clock mr-2"></i>6:00 PM</p>
                             </div>
                         </div>
-                        
-                        <div class="space-y-3 mt-4">
-                            <!-- REEMPLAZAR ENLACE MAPS -->
-                            <a href="URL_MAPS_RECEPCION" target="_blank" class="block w-full py-3 border border-sky-blue text-sky-blue rounded-full font-montserrat text-xs uppercase tracking-widest hover:bg-sky-blue hover:text-white transition">
-                                Ver Ubicación
-                            </a>
+                        <a href="https://maps.app.goo.gl/rTg5T3zHFMk1nAes5" target="_blank" class="block w-full py-3 border border-sky-accent text-sky-accent rounded-full font-montserrat text-[10px] uppercase tracking-widest hover:bg-sky-accent hover:text-white transition">
+                            Ver Ubicación en Maps
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= 6. ITINERARIO ================= -->
+            <section class="py-12 px-6 max-w-sm mx-auto reveal">
+                <h2 class="text-2xl font-cinzel text-center text-charcoal mb-10 font-semibold">Itinerario</h2>
+                <div class="relative border-l border-sky-accent/50 ml-4 space-y-10 pb-4">
+                     
+                    <div class="relative pl-6 reveal">
+                        <div class="absolute -left-4 bg-off-white text-sky-accent border border-sky-accent rounded-full w-8 h-8 flex items-center justify-center shadow-sm text-xs">
+                            <i class="fa-solid fa-martini-glass-citrus"></i>
                         </div>
+                        <h4 class="font-cinzel font-bold text-base text-charcoal">Recepción</h4>
+                        <p class="font-montserrat text-xs opacity-70">6:00 PM</p>
+                    </div>
+
+                    <div class="relative pl-6 reveal">
+                        <div class="absolute -left-4 bg-off-white text-sky-accent border border-sky-accent rounded-full w-8 h-8 flex items-center justify-center shadow-sm text-xs">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <h4 class="font-cinzel font-bold text-base text-charcoal">Presentación / Vals</h4>
+                        <p class="font-montserrat text-xs opacity-70">7:00 PM</p>
+                    </div>
+
+                    <div class="relative pl-6 reveal">
+                        <div class="absolute -left-4 bg-off-white text-sky-accent border border-sky-accent rounded-full w-8 h-8 flex items-center justify-center shadow-sm text-xs">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h4 class="font-cinzel font-bold text-base text-charcoal">Cena</h4>
+                        <p class="font-montserrat text-xs opacity-70">7:30 PM</p>
+                    </div>
+
+                    <div class="relative pl-6 reveal">
+                        <div class="absolute -left-4 bg-off-white text-sky-accent border border-sky-accent rounded-full w-8 h-8 flex items-center justify-center shadow-sm text-xs">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <h4 class="font-cinzel font-bold text-base text-charcoal">Baile</h4>
+                        <p class="font-montserrat text-xs opacity-70">8:30 PM</p>
+                    </div>
+
+                    <div class="relative pl-6 reveal">
+                        <div class="absolute -left-4 bg-off-white text-sky-accent border border-sky-accent rounded-full w-8 h-8 flex items-center justify-center shadow-sm text-xs">
+                            <i class="fa-solid fa-moon"></i>
+                        </div>
+                        <h4 class="font-cinzel font-bold text-base text-charcoal">Final del Evento</h4>
+                        <p class="font-montserrat text-xs opacity-70">1:00 AM</p>
                     </div>
                 </div>
+            </section>
 
-            </div>
-        </section>
-
-        <!-- ================= 7. ITINERARIO ================= -->
-        <section class="py-20 px-6 max-w-lg mx-auto reveal">
-            <h2 class="text-3xl font-cinzel text-center text-charcoal mb-16">Itinerario</h2>
-            <div class="relative border-l border-sky-blue/50 ml-4 md:ml-1/2 space-y-12 pb-8">
-                
-                <!-- ITEM 1 -->
-                <div class="relative pl-8 reveal" style="transition-delay: 100ms;">
-                    <div class="absolute -left-5 bg-off-white text-sky-blue border border-sky-blue rounded-full w-10 h-10 flex items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-martini-glass-citrus text-sm"></i>
-                    </div>
-                    <h4 class="font-cinzel font-bold text-lg text-charcoal">Recepción</h4>
-                    <p class="font-montserrat text-sm opacity-70">6:00 PM</p>
-                </div>
-                
-                <!-- ITEM 2 -->
-                <div class="relative pl-8 reveal" style="transition-delay: 200ms;">
-                    <div class="absolute -left-5 bg-off-white text-sky-blue border border-sky-blue rounded-full w-10 h-10 flex items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-crown text-sm"></i>
-                    </div>
-                    <h4 class="font-cinzel font-bold text-lg text-charcoal">Presentación / Vals</h4>
-                    <p class="font-montserrat text-sm opacity-70">7:00 PM</p>
-                </div>
-
-                <!-- ITEM 3 -->
-                <div class="relative pl-8 reveal" style="transition-delay: 300ms;">
-                    <div class="absolute -left-5 bg-off-white text-sky-blue border border-sky-blue rounded-full w-10 h-10 flex items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-utensils text-sm"></i>
-                    </div>
-                    <h4 class="font-cinzel font-bold text-lg text-charcoal">Cena</h4>
-                    <p class="font-montserrat text-sm opacity-70">7:30 PM</p>
-                </div>
-
-                <!-- ITEM 4 -->
-                <div class="relative pl-8 reveal" style="transition-delay: 400ms;">
-                    <div class="absolute -left-5 bg-off-white text-sky-blue border border-sky-blue rounded-full w-10 h-10 flex items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-music text-sm"></i>
-                    </div>
-                    <h4 class="font-cinzel font-bold text-lg text-charcoal">Baile</h4>
-                    <p class="font-montserrat text-sm opacity-70">8:30 PM</p>
-                </div>
-
-                <!-- ITEM 5 -->
-                <div class="relative pl-8 reveal" style="transition-delay: 500ms;">
-                    <div class="absolute -left-5 bg-off-white text-sky-blue border border-sky-blue rounded-full w-10 h-10 flex items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-moon text-sm"></i>
-                    </div>
-                    <h4 class="font-cinzel font-bold text-lg text-charcoal">Final del Evento</h4>
-                    <p class="font-montserrat text-sm opacity-70">1:00 AM</p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ================= BANNER TRANSICIÓN 3 ================= -->
-        <div class="w-full relative h-[60vh] md:h-[80vh] mask-both reveal">
-            <img src="https://drive.google.com/thumbnail?id=1WHTehj6t76LDxOQgLMi4lypo-43GTCC4&sz=w1200" class="w-full h-full object-cover object-center" alt="Transición">
-        </div>
-
-        <!-- ================= 8. CÓDIGO DE VESTIMENTA & ADULTOS ================= -->
-        <section class="py-24 px-6 text-center reveal">
-            <h2 class="text-3xl font-cinzel text-charcoal mb-8">Código de Vestimenta</h2>
-            <div class="flex justify-center gap-6 text-4xl text-sky-blue mb-6 opacity-80">
-                <i class="fa-solid fa-user-tie"></i>
-                <i class="fa-solid fa-person-dress"></i>
-            </div>
-            <p class="font-cormorant italic text-3xl text-charcoal mb-4">Formal de Noche ✨</p>
-            <p class="font-montserrat text-sm max-w-lg mx-auto opacity-75 leading-relaxed mb-6">
-                Una noche tan especial merece sus mejores galas. Vístete de gala y acompáñanos a celebrar una noche mágica, llena de luz, sueños y momentos inolvidables.
-            </p>
-            <p class="font-montserrat text-xs max-w-md mx-auto text-red-800/70 font-semibold uppercase tracking-wider mb-8">
-                Favor de evitar mezclilla, tenis y ropa casual.
-            </p>
-            
-            <div class="bg-sky-blue/10 rounded-2xl p-6 max-w-md mx-auto inline-block border border-sky-blue/20 mb-16">
-                <p class="font-montserrat text-xs uppercase tracking-widest text-charcoal mb-2 font-bold">Colores Exclusivos</p>
-                <p class="font-cormorant text-lg italic text-charcoal">Favor de evitar: Azul Cielo, Lila y Menta</p>
+            <!-- ================= BANNER TRANSICIÓN 3 ================= -->
+            <div class="w-full relative h-[65vh] mask-dreamy reveal my-4">
+                <img src="https://drive.google.com/uc?export=view&id=1WHTehj6t76LDxOQgLMi4lypo-43GTCC4" class="w-full h-full object-cover" alt="Mia Transición 3">
             </div>
 
-            <h2 class="text-2xl font-cinzel text-charcoal mb-4 mt-8">Una noche para celebrar entre adultos</h2>
-            <div class="flex justify-center text-3xl text-sky-blue mb-4 opacity-80">
-                <i class="fa-solid fa-ban-child"></i>
-            </div>
-            <p class="font-montserrat text-sm max-w-md mx-auto opacity-75 leading-relaxed">
-                Con mucho cariño, hemos diseñado esta celebración para disfrutarse en compañía de adultos. Agradecemos de corazón su comprensión.
-            </p>
-        </section>
-
-        <!-- ================= 9. MESA DE REGALOS (LLUVIA DE SOBRES) ================= -->
-        <section class="py-20 px-4 max-w-3xl mx-auto reveal">
-            <div class="glass p-10 rounded-3xl text-center shadow-md border border-cream">
-                <i class="fa-solid fa-envelope-open-text text-4xl text-sky-blue mb-6"></i>
-                <h2 class="text-2xl font-cinzel mb-4">Un Detalle para Mia</h2>
-                <p class="font-cormorant italic text-xl mb-6">Lo más importante es compartir contigo esta noche inolvidable.</p>
-                
-                <p class="font-montserrat text-sm max-w-md mx-auto opacity-75 leading-relaxed mb-8">
-                    Si nace de ti obsequiarle algo, una <strong>lluvia de sobres</strong> será una bonita manera de contribuir a sus sueños.
+            <!-- ================= 7. CÓDIGO DE VESTIMENTA ================= -->
+            <section class="py-12 px-6 text-center max-w-md mx-auto reveal">
+                <h2 class="text-2xl font-cinzel text-charcoal mb-6 font-semibold">Código de Vestimenta</h2>
+                <div class="flex justify-center gap-6 text-3xl text-sky-accent mb-4 opacity-90">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <i class="fa-solid fa-person-dress"></i>
+                </div>
+                <p class="font-cormorant italic text-2xl text-charcoal mb-3 font-semibold">Formal de Noche ✨</p>
+                <p class="font-montserrat text-xs max-w-xs mx-auto opacity-80 leading-relaxed mb-6">
+                    Una noche tan especial merece sus mejores galas. Vístete de gala y acompáñanos a celebrar una noche mágica, llena de luz y sueños.<br><br><strong>Favor de evitar mezclilla, tenis y ropa casual.</strong>
                 </p>
-                
-                <p class="font-cinzel text-lg text-sky-blue font-bold">¡Gracias por acompañarnos!</p>
-            </div>
-        </section>
+                <div class="glass p-4 rounded-2xl inline-block shadow-sm">
+                    <p class="font-montserrat text-[10px] uppercase tracking-widest text-sky-accent font-bold mb-1">Colores exclusivos para la quinceañera:</p>
+                    <p class="font-cormorant text-base italic">Azul cielo, lila y menta</p>
+                </div>
+            </section>
 
-        <!-- ================= 10. GALERÍA EDITORIAL ================= -->
-        <section class="py-24 max-w-5xl mx-auto text-center reveal">
-            <h2 class="text-3xl font-cinzel mb-12">Nuestros Momentos</h2>
-            
-            <div class="relative w-full max-w-sm md:max-w-2xl mx-auto px-4">
-                <!-- Álbum Físico Style -->
-                <div class="bg-white p-3 md:p-6 shadow-xl rounded-sm transform rotate-1">
-                    <div class="relative aspect-[3/4] overflow-hidden rounded-sm border border-gray-100 bg-charcoal/5">
-                        <img id="gallery-img" src="" class="w-full h-full object-contain transition-opacity duration-500" alt="Galería">
-                        
-                        <!-- Overlay contador -->
-                        <div class="absolute bottom-4 left-0 right-0 text-center">
-                            <span id="gallery-counter" class="bg-white/80 backdrop-blur text-charcoal font-montserrat text-xs px-4 py-1 rounded-full uppercase tracking-widest"></span>
+            <!-- ================= 8. MESA DE REGALOS (LLUVIA DE SOBRES) ================= -->
+            <section class="py-12 px-4 max-w-md mx-auto reveal">
+                <div class="glass p-8 rounded-3xl text-center shadow-md border border-cream">
+                    <i class="fa-solid fa-envelope-open-text text-3xl text-sky-accent mb-4"></i>
+                    <h2 class="text-xl font-cinzel mb-3 font-semibold">Lluvia de Sobres</h2>
+                    <p class="font-cormorant italic text-lg mb-6 leading-relaxed">
+                        "Lo más importante es compartir contigo esta noche inolvidable. Si nace de ti obsequiarle algo a Mia, una lluvia de sobres será una bonita manera de contribuir a sus sueños."
+                    </p>
+                    <p class="font-montserrat text-xs font-semibold text-sky-accent uppercase tracking-widest">¡Gracias por acompañarnos!</p>
+                </div>
+            </section>
+
+            <!-- ================= 9. GALERÍA EDITORIAL ================= -->
+            <section class="py-14 max-w-lg mx-auto text-center reveal">
+                <h2 class="text-2xl font-cinzel mb-8 font-semibold">Nuestros Momentos</h2>
+                 
+                <div class="relative w-full max-w-xs mx-auto px-4">
+                    <div class="bg-white p-3 shadow-xl rounded-sm transform rotate-1">
+                        <div class="relative aspect-[4/5] overflow-hidden rounded-sm border border-gray-100">
+                            <img id="gallery-img" src="" class="w-full h-full object-cover transition-opacity duration-500" alt="Galería Mia">
+                            <div class="absolute bottom-3 left-0 right-0 text-center">
+                                <span id="gallery-counter" class="bg-white/80 backdrop-blur text-charcoal font-montserrat text-[10px] px-3 py-1 rounded-full uppercase tracking-widest"></span>
+                            </div>
                         </div>
                     </div>
+                     
+                    <div class="flex justify-between items-center mt-6 px-4 font-cinzel font-bold text-sky-accent text-sm">
+                        <button onclick="changeImage(-1)" class="hover:text-charcoal transition group flex items-center">
+                            <i class="fa-solid fa-arrow-left-long mr-2 transform group-hover:-translate-x-1 transition"></i> Anterior
+                        </button>
+                        <button onclick="changeImage(1)" class="hover:text-charcoal transition group flex items-center">
+                            Siguiente <i class="fa-solid fa-arrow-right-long ml-2 transform group-hover:translate-x-1 transition"></i>
+                        </button>
+                    </div>
                 </div>
-                
-                <!-- Controles Editoriales -->
-                <div class="flex justify-between items-center mt-8 px-4 font-cinzel font-bold text-sky-blue">
-                    <button onclick="changeImage(-1)" class="hover:text-charcoal transition group flex items-center">
-                        <i class="fa-solid fa-arrow-left-long mr-3 transform group-hover:-translate-x-2 transition"></i> Anterior
+            </section>
+
+            <!-- ================= 10. AVISO ADULTOS Y RSVP ================= -->
+            <section class="py-14 px-4 bg-charcoal text-off-white text-center reveal mt-8 rounded-t-[2.5rem]">
+                <!-- Aviso Adultos -->
+                <div class="max-w-sm mx-auto mb-10 bg-white/5 p-6 rounded-2xl border border-white/10">
+                    <i class="fa-solid fa-champagne-glasses text-2xl text-sky-accent mb-3"></i>
+                    <h3 class="font-cinzel text-lg mb-2 font-semibold">Una noche para celebrar entre adultos</h3>
+                    <p class="font-montserrat text-xs font-light text-off-white/80 leading-relaxed">
+                        Con mucho cariño, hemos diseñado esta celebración para disfrutarse en compañía de adultos. Agradecemos de corazón su comprensión.
+                    </p>
+                </div>
+
+                <h2 class="text-2xl font-cinzel mb-3 font-semibold">Confirmación</h2>
+                <p class="font-cormorant italic text-lg mb-8 opacity-90 text-cream">Esperamos contar con tu valiosa presencia.</p>
+                 
+                <!-- Vista si ya confirmó -->
+                <div id="rsvp-success" class="hidden max-w-sm mx-auto glass border-none !bg-white/10 p-8 rounded-3xl">
+                    <i class="fa-regular fa-circle-check text-4xl text-sky-accent mb-3"></i>
+                    <h3 class="font-cinzel text-xl mb-2 font-semibold">¡Gracias!</h3>
+                    <p class="font-montserrat font-light text-xs">Tu respuesta ha sido enviada con éxito.</p>
+                </div>
+
+                <!-- Formulario principal -->
+                <form id="rsvp-form" class="max-w-sm mx-auto text-left space-y-4">
+                    <div id="greeting-box" class="hidden text-center mb-4">
+                        <p class="font-montserrat text-[10px] tracking-widest uppercase text-cream/70 mb-1">Invitación especial para:</p>
+                        <h3 id="guest-name-display" class="font-cinzel text-xl text-cream font-semibold"></h3>
+                    </div>
+
+                    <div>
+                        <label class="block font-montserrat text-[10px] uppercase tracking-widest mb-1 ml-2 opacity-80">Nombre Completo</label>
+                        <input type="text" id="guest-name" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-xs text-off-white focus:outline-none focus:border-sky-accent transition" placeholder="Ej: Familia Pérez">
+                    </div>
+                     
+                    <div>
+                        <label class="block font-montserrat text-[10px] uppercase tracking-widest mb-1 ml-2 opacity-80">Teléfono (WhatsApp)</label>
+                        <input type="tel" id="guest-phone" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-xs text-off-white focus:outline-none focus:border-sky-accent transition" placeholder="10 dígitos">
+                    </div>
+
+                    <div>
+                        <label class="block font-montserrat text-[10px] uppercase tracking-widest mb-1 ml-2 opacity-80">¿Asistirás?</label>
+                        <select id="guest-status" required class="w-full bg-[#3A3E38] border border-white/20 rounded-xl px-4 py-3 text-xs text-off-white focus:outline-none focus:border-sky-accent transition appearance-none">
+                            <option value="Si, confirmo asistencia">Sí, confirmo asistencia</option>
+                            <option value="No podré asistir">Lamentablemente no podré asistir</option>
+                        </select>
+                    </div>
+                     
+                    <div id="passes-container">
+                        <label class="block font-montserrat text-[10px] uppercase tracking-widest mb-1 ml-2 opacity-80">
+                            Número de Pases
+                            <span id="passes-badge" class="ml-2 text-[9px] bg-sky-accent text-white px-2 py-0.5 rounded-full hidden"></span>
+                        </label>
+                        <select id="guest-passes" class="w-full bg-[#3A3E38] border border-white/20 rounded-xl px-4 py-3 text-xs text-off-white focus:outline-none focus:border-sky-accent transition appearance-none">
+                            <!-- JS llena esto -->
+                        </select>
+                    </div>
+                     
+                    <button type="submit" id="btn-submit" class="w-full py-3.5 mt-2 bg-cream text-charcoal font-montserrat font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-sky-accent hover:text-white transition shadow-md">
+                        Enviar Confirmación
                     </button>
-                    <button onclick="changeImage(1)" class="hover:text-charcoal transition group flex items-center">
-                        Siguiente <i class="fa-solid fa-arrow-right-long ml-3 transform group-hover:translate-x-2 transition"></i>
-                    </button>
+                </form>
+                 
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="font-montserrat text-[10px] opacity-70 uppercase tracking-widest mb-2">
+                        Fecha límite de confirmación: <strong class="text-white">5 de Diciembre</strong>
+                    </p>
+                    <p class="font-montserrat text-[10px] opacity-70 uppercase tracking-widest">
+                        Contacto: <a href="https://wa.me/524432226628" target="_blank" class="text-sky-accent underline font-semibold">443 222 6628</a>
+                    </p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- ================= 11. RSVP (CONFIRMACIÓN FIREBASE) ================= -->
-        <section class="py-24 px-4 bg-charcoal text-off-white text-center reveal mt-12 rounded-t-[3rem]">
-            <h2 class="text-3xl font-cinzel mb-4">Confirmación</h2>
-            <p class="font-cormorant italic text-xl mb-10 opacity-90 text-cream">Esperamos contar con tu presencia.</p>
-            
-            <!-- Vista si ya confirmó -->
-            <div id="rsvp-success" class="hidden max-w-md mx-auto glass border-none !bg-white/10 p-10 rounded-3xl">
-                <i class="fa-regular fa-circle-check text-5xl text-cream mb-4"></i>
-                <h3 class="font-cinzel text-2xl mb-2">¡Gracias!</h3>
-                <p class="font-montserrat font-light text-sm">Tu respuesta ha sido enviada exitosamente.</p>
-            </div>
+            <!-- ================= 11. FOOTER (FOTO FINAL) ================= -->
+            <footer class="relative w-full h-[65vh] flex flex-col items-center justify-end pb-12 text-center">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://drive.google.com/uc?export=view&id=1gEWgAPQVUPJApZ0gfwYspUkfvxVcjP2v" class="w-full h-full object-cover" alt="Pie de invitación Mia">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent"></div>
+                </div>
+                <div class="relative z-10 px-4">
+                    <h1 class="text-3xl text-cream font-cinzel mb-1">Mia Daniela</h1>
+                    <p class="font-montserrat text-[10px] text-cream/70 tracking-[0.25em] uppercase">Mis XV Años • 2026</p>
+                </div>
+            </footer>
 
-            <!-- Formulario principal -->
-            <form id="rsvp-form" class="max-w-md mx-auto text-left space-y-6">
-                <!-- Nombre Dinámico (Si viene en URL) -->
-                <div id="greeting-box" class="hidden text-center mb-6">
-                    <p class="font-montserrat text-xs tracking-widest uppercase text-cream/70 mb-1">Invitación especial para:</p>
-                    <h3 id="guest-name-display" class="font-cinzel text-2xl text-cream"></h3>
-                </div>
-
-                <div>
-                    <label class="block font-montserrat text-xs uppercase tracking-widest mb-2 ml-2 opacity-80">Nombre Completo</label>
-                    <input type="text" id="guest-name" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-off-white focus:outline-none focus:border-sky-blue transition" placeholder="Ej: Familia Pérez">
-                </div>
-                
-                <div>
-                    <label class="block font-montserrat text-xs uppercase tracking-widest mb-2 ml-2 opacity-80">Teléfono (WhatsApp)</label>
-                    <input type="tel" id="guest-phone" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-off-white focus:outline-none focus:border-sky-blue transition" placeholder="10 dígitos">
-                </div>
-
-                <div>
-                    <label class="block font-montserrat text-xs uppercase tracking-widest mb-2 ml-2 opacity-80">¿Asistirás?</label>
-                    <select id="guest-status" required class="w-full bg-charcoal border border-white/20 rounded-xl px-4 py-3 text-off-white focus:outline-none focus:border-sky-blue transition appearance-none">
-                        <option value="Si, confirmo asistencia">Sí, confirmo asistencia</option>
-                        <option value="No podré asistir">Lamentablemente no podré asistir</option>
-                    </select>
-                </div>
-                
-                <div id="passes-container">
-                    <label class="block font-montserrat text-xs uppercase tracking-widest mb-2 ml-2 opacity-80">
-                        Número de Pases Confirmados
-                        <span id="passes-badge" class="ml-2 text-[10px] bg-sky-blue text-white px-2 py-1 rounded-full hidden"></span>
-                    </label>
-                    <select id="guest-passes" class="w-full bg-charcoal border border-white/20 rounded-xl px-4 py-3 text-off-white focus:outline-none focus:border-sky-blue transition appearance-none">
-                        <!-- Se llena dinámicamente con JS -->
-                    </select>
-                </div>
-                
-                <button type="submit" id="btn-submit" class="w-full py-4 mt-4 bg-cream text-charcoal font-montserrat font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-sky-blue hover:text-white transition">
-                    Enviar Confirmación
-                </button>
-            </form>
-            
-            <p class="font-montserrat text-xs mt-10 opacity-50 uppercase tracking-widest">
-                Favor de confirmar antes del <br> 5 DE DICIEMBRE DE 2026
-            </p>
-            <p class="font-montserrat text-xs mt-4 opacity-50 tracking-widest">
-                Dudas o contacto: 4432226628
-            </p>
-        </section>
-
-        <!-- ================= 12. FOOTER Y FOTO FINAL ================= -->
-        <div class="w-full relative h-[60vh] md:h-[80vh] mask-both reveal mt-12">
-            <img src="https://drive.google.com/thumbnail?id=1gEWgAPQVUPJApZ0gfwYspUkfvxVcjP2v&sz=w1200" class="w-full h-full object-cover object-center" alt="Despedida">
         </div>
-        <footer class="bg-charcoal text-center pb-12 pt-8 relative z-20">
-            <p class="font-cinzel text-xs tracking-[0.4em] uppercase mb-2 text-sky-blue">Mis XV Años</p>
-            <h1 class="text-5xl text-cream font-great-vibes mb-2">Mia Daniela</h1>
-            <p class="font-montserrat text-xs text-cream/50 tracking-widest mt-4">2026</p>
-        </footer>
 
     </div>
 
     <!-- ================= ELEMENTOS FLOTANTES ================= -->
-    <!-- Audio Player -->
-    <button id="audio-btn" class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-sky-blue/90 backdrop-blur text-white rounded-full shadow-lg flex items-center justify-center hover:bg-charcoal transition hidden">
-        <i class="fa-solid fa-volume-high" id="audio-icon"></i>
+    <button id="audio-btn" class="fixed bottom-6 right-6 z-50 w-11 h-11 bg-sky-accent/90 backdrop-blur text-white rounded-full shadow-lg flex items-center justify-center hover:bg-charcoal transition hidden">
+        <i class="fa-solid fa-volume-high text-sm" id="audio-icon"></i>
     </button>
     <audio id="bg-audio" loop></audio>
 
-    <!-- Botón Admin (Oculto por defecto) -->
-    <button id="admin-toggle" class="fixed bottom-6 left-6 z-50 w-12 h-12 bg-charcoal/90 text-white rounded-full shadow-lg items-center justify-center hover:bg-sky-blue transition hidden">
-        <i class="fa-solid fa-gear"></i>
+    <button id="admin-toggle" class="fixed bottom-6 left-6 z-50 w-11 h-11 bg-charcoal/90 text-white rounded-full shadow-lg hidden items-center justify-center hover:bg-sky-accent transition">
+        <i class="fa-solid fa-gear text-sm"></i>
     </button>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-charcoal text-white font-montserrat text-xs px-6 py-3 rounded-full shadow-xl flex items-center gap-3">
-        <i class="fa-solid fa-circle-check text-sky-blue"></i>
+    <div id="toast" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-charcoal text-white font-montserrat text-xs px-5 py-2.5 rounded-full shadow-xl flex items-center gap-2 border border-white/10">
+        <i class="fa-solid fa-circle-check text-sky-accent"></i>
         <span id="toast-msg">Mensaje</span>
     </div>
 
     <!-- ================= PANEL ADMIN MODAL ================= -->
-    <div id="admin-panel" class="fixed inset-0 z-[100] bg-charcoal/40 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-off-white w-full max-w-3xl rounded-3xl shadow-2xl flex flex-col h-[85vh]">
-            <div class="p-6 border-b border-gray-200 flex justify-between items-center bg-white rounded-t-3xl">
-                <h3 class="font-cinzel text-xl font-bold"><i class="fa-solid fa-lock text-sky-blue mr-2"></i>Panel de Control</h3>
-                <button onclick="document.getElementById('admin-panel').classList.add('hidden')" class="text-gray-400 hover:text-charcoal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+    <div id="admin-panel" class="fixed inset-0 z-[100] bg-charcoal/50 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-off-white w-full max-w-lg rounded-3xl shadow-2xl flex flex-col h-[80vh]">
+            <div class="p-5 border-b border-gray-200 flex justify-between items-center bg-white rounded-t-3xl">
+                <h3 class="font-cinzel text-lg font-bold"><i class="fa-solid fa-lock text-sky-accent mr-2"></i>Panel de Control</h3>
+                <button onclick="document.getElementById('admin-panel').classList.add('hidden')" class="text-gray-400 hover:text-charcoal"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            
-            <!-- Pestañas -->
+             
             <div class="flex border-b border-gray-200 bg-white">
-                <button onclick="switchAdminTab('links')" id="tab-links" class="flex-1 py-3 text-sm font-montserrat font-bold text-sky-blue border-b-2 border-sky-blue">Generar Links</button>
-                <button onclick="switchAdminTab('data')" id="tab-data" class="flex-1 py-3 text-sm font-montserrat text-gray-500 hover:text-charcoal">Lista Confirmados</button>
+                <button onclick="switchAdminTab('links')" id="tab-links" class="flex-1 py-3 text-xs font-montserrat font-bold text-sky-accent border-b-2 border-sky-accent">Generar Links</button>
+                <button onclick="switchAdminTab('data')" id="tab-data" class="flex-1 py-3 text-xs font-montserrat text-gray-500 hover:text-charcoal">Lista Confirmados</button>
             </div>
 
-            <!-- Tab Links -->
-            <div id="content-links" class="p-6 overflow-y-auto flex-grow">
-                <p class="font-montserrat text-sm mb-4">Crea enlaces personalizados para restringir pases.</p>
-                <div class="space-y-4">
+            <div id="content-links" class="p-5 overflow-y-auto flex-grow">
+                <p class="font-montserrat text-xs mb-4 text-gray-600">Crea enlaces personalizados para restringir pases.</p>
+                <div class="space-y-3">
                     <div>
-                        <label class="block font-montserrat text-xs mb-1">Nombre (Opcional):</label>
-                        <input type="text" id="link-name" class="w-full border rounded p-2 text-sm" placeholder="Ej: Familia Morales">
+                        <label class="block font-montserrat text-[10px] uppercase text-gray-500 mb-1">Nombre del Invitado o Familia:</label>
+                        <input type="text" id="link-name" class="w-full border rounded-xl p-2.5 text-xs outline-none focus:border-sky-accent" placeholder="Ej: Familia Morales">
                     </div>
                     <div>
-                        <label class="block font-montserrat text-xs mb-1">Límite de Pases:</label>
-                        <input type="number" id="link-passes" class="w-full border rounded p-2 text-sm" min="1" max="10" value="2">
+                        <label class="block font-montserrat text-[10px] uppercase text-gray-500 mb-1">Límite de Pases:</label>
+                        <input type="number" id="link-passes" class="w-full border rounded-xl p-2.5 text-xs outline-none focus:border-sky-accent" min="1" max="10" value="2">
                     </div>
-                    <button onclick="generateLink()" class="w-full bg-sky-blue text-white py-3 rounded-lg font-montserrat text-xs mt-4">Generar Enlace</button>
-                    
+                    <button onclick="generateLink()" class="w-full bg-sky-accent text-white py-3 rounded-xl font-montserrat text-xs uppercase tracking-widest mt-2 hover:bg-charcoal transition">Generar Enlace</button>
+                     
                     <div id="generated-link-box" class="hidden mt-4">
-                        <label class="block font-montserrat text-xs text-gray-500 mb-1">Enlace generado:</label>
+                        <label class="block font-montserrat text-[10px] text-gray-500 mb-1">Enlace generado:</label>
                         <div class="flex">
-                            <input type="text" id="result-link" readonly class="w-full border border-gray-300 rounded-l-lg p-2 text-xs bg-gray-50 text-gray-600 outline-none">
-                            <button onclick="copyGeneratedLink()" class="bg-charcoal text-white px-4 rounded-r-lg hover:bg-black transition"><i class="fa-regular fa-copy"></i></button>
+                            <input type="text" id="result-link" readonly class="w-full border border-gray-300 rounded-l-xl p-2 text-[10px] bg-gray-50 text-gray-600 outline-none">
+                            <button onclick="copyGeneratedLink()" class="bg-charcoal text-white px-3 rounded-r-xl hover:bg-black transition"><i class="fa-regular fa-copy"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab Base de datos -->
-            <div id="content-data" class="p-6 overflow-y-auto flex-grow hidden flex-col">
-                <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+            <div id="content-data" class="p-5 overflow-y-auto flex-grow hidden flex-col">
+                <div class="flex justify-between items-center mb-4 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
                     <div>
-                        <p class="font-montserrat text-xs text-gray-500 uppercase">Total Pases Confirmados</p>
-                        <p id="total-passes" class="font-cinzel text-4xl text-sky-blue font-bold">0</p>
+                        <p class="font-montserrat text-[9px] text-gray-400 uppercase">Total Pases</p>
+                        <p id="total-passes" class="font-cinzel text-2xl text-sky-accent font-bold">0</p>
                     </div>
-                    <button id="btn-export" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-montserrat text-xs transition flex items-center">
-                        <i class="fa-solid fa-file-excel mr-2"></i> Descargar
+                    <button id="btn-export" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg font-montserrat text-[10px] transition flex items-center">
+                        <i class="fa-solid fa-file-excel mr-1"></i> Descargar Excel
                     </button>
                 </div>
-                
+                 
                 <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-100 flex-grow">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-gray-50 font-montserrat text-xs uppercase text-gray-500 border-b">
-                                <th class="p-4">Invitado / Familia</th>
-                                <th class="p-4">WhatsApp</th>
-                                <th class="p-4 text-center">Pases</th>
-                                <th class="p-4">Estatus</th>
+                            <tr class="bg-gray-50 font-montserrat text-[10px] uppercase text-gray-400 border-b">
+                                <th class="p-3">Invitado</th>
+                                <th class="p-3">WhatsApp</th>
+                                <th class="p-3 text-center">Pases</th>
+                                <th class="p-3">Estatus</th>
                             </tr>
                         </thead>
-                        <tbody id="guests-list" class="font-montserrat text-sm divide-y divide-gray-100">
+                        <tbody id="guests-list" class="font-montserrat text-xs divide-y divide-gray-100">
                             <!-- JS llena esto -->
                         </tbody>
                     </table>
@@ -534,36 +489,27 @@
         </div>
     </div>
 
-    </div> <!-- Cierre de mobile-wrapper -->
-
     <!-- ================= SCRIPTS ================= -->
-    
-    <!-- Script de Lógica Frontend -->
     <script>
-        // ==========================================
-        // CONFIGURACIÓN DE LÓGICA FRONTEND
-        // ==========================================
-        const AUDIO_URL_DROPBOX = "URL_DROPBOX_CANCION"; // Pega el enlace de dropbox original
+        const AUDIO_URL_DROPBOX = ""; 
         const FECHA_CUENTA_REGRESIVA = "Dec 19, 2026 16:00:00"; 
         const MAX_PASES_DEFAULT = 5; 
-        
-        // Galería de fotos con formato thumbnail para saltar la protección de Google Drive
-        let GALERIA_FOTOS = [
-            "https://drive.google.com/thumbnail?id=1VKZhSRYuwaYDuzpYgJ-gVwSZfrET2bCl&sz=w1200",
-            "https://drive.google.com/thumbnail?id=12AH07sjDK5d2rVhXnlhl7F999FJlUB5z&sz=w1200",
-            "https://drive.google.com/thumbnail?id=1SWfyAmgSdLoOH5Cc5LGQk_H1_KkYesmm&sz=w1200",
-            "https://drive.google.com/thumbnail?id=1pfWMujm4bJQ6xcvZJ6Vir-n1s8VHje0A&sz=w1200",
-            "https://drive.google.com/thumbnail?id=1VT-VMmg6F2cDr3XpGr0dzf1oqAe9Qij6&sz=w1200",
-            "https://drive.google.com/thumbnail?id=1B8d1ML9YDozuPpcSDTR-I6SCryLR-dX5&sz=w1200",
-            "https://drive.google.com/thumbnail?id=1Sz3L3_eSuRn7hlzNXVAeLtku1e50dPN4&sz=w1200",
-            "https://drive.google.com/thumbnail?id=1ysfYqeVz_JiGHnACsvQ0Nb-ObIKZ9Riw&sz=w1200"
+         
+        // Galería de fotos restante (con los enlaces limpios y sin duplicados)
+        const GALERIA_FOTOS = [
+            "https://drive.google.com/uc?export=view&id=10iMgRrMZnk5KrhPqTOPatQQ6ZEpJ38HK",
+            "https://drive.google.com/uc?export=view&id=1VKZhSRYuwaYDuzpYgJ-gVwSZfrET2bCl",
+            "https://drive.google.com/uc?export=view&id=12AH07sjDK5d2rVhXnlhl7F999FJlUB5z",
+            "https://drive.google.com/uc?export=view&id=1SWfyAmgSdLoOH5Cc5LGQk_H1_KkYesmm",
+            "https://drive.google.com/uc?export=view&id=1pfWMujm4bJQ6xcvZJ6Vir-n1s8VHje0A",
+            "https://drive.google.com/uc?export=view&id=1VT-VMmg6F2cDr3XpGr0dzf1oqAe9Qij6",
+            "https://drive.google.com/uc?export=view&id=1B8d1ML9YDozuPpcSDTR-I6SCryLR-dX5",
+            "https://drive.google.com/uc?export=view&id=1Sz3L3_eSuRn7hlzNXVAeLtku1e50dPN4",
+            "https://drive.google.com/uc?export=view&id=1ysfYqeVz_JiGHnACsvQ0Nb-ObIKZ9Riw"
         ];
-        // ==========================================
 
-        // 1. Manejo de Audio (Dropbox fix)
-        const audioUrl = AUDIO_URL_DROPBOX.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('dl=0', 'dl=1');
+        // Manejo de Audio
         const bgAudio = document.getElementById('bg-audio');
-        bgAudio.src = audioUrl;
         let isPlaying = false;
 
         document.getElementById('btn-abrir').addEventListener('click', () => {
@@ -571,10 +517,12 @@
             setTimeout(() => {
                 document.getElementById('splash-screen').classList.add('hidden');
                 document.getElementById('main-content').classList.remove('hidden');
-                document.getElementById('audio-btn').classList.remove('hidden');
-                bgAudio.play().catch(e => console.log("Auto-play blocked"));
-                isPlaying = true;
-                document.getElementById('audio-icon').classList.replace('fa-volume-xmark', 'fa-volume-high');
+                if(AUDIO_URL_DROPBOX) {
+                    document.getElementById('audio-btn').classList.remove('hidden');
+                    bgAudio.src = AUDIO_URL_DROPBOX.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('dl=0', 'dl=1');
+                    bgAudio.play().catch(e => console.log("Auto-play blocked"));
+                    isPlaying = true;
+                }
             }, 800);
         });
 
@@ -589,18 +537,15 @@
             isPlaying = !isPlaying;
         });
 
-        // 2. Notificaciones Toast
-        window.showToast = function(msg) {
+        // Notificaciones Toast
+        function showToast(msg) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-msg').innerText = msg;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
-        window.copiarDatos = function(texto) {
-            navigator.clipboard.writeText(texto).then(() => window.showToast("Datos copiados"));
-        }
 
-        // 3. Scroll Reveal
+        // Scroll Reveal
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -611,15 +556,15 @@
         }, { threshold: 0.1 });
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // 4. Cuenta Regresiva
+        // Cuenta Regresiva
         const countDownDate = new Date(FECHA_CUENTA_REGRESIVA).getTime();
         const x = setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
-            
+             
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown").innerHTML = "<p class='text-2xl font-cinzel text-sky-blue glass px-6 py-2 rounded-full'>¡Llegó el gran día!</p>";
+                document.getElementById("countdown").innerHTML = "<p class='text-lg font-cinzel text-sky-accent'>¡Llegó el gran día!</p>";
                 return;
             }
 
@@ -629,17 +574,15 @@
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             document.getElementById("countdown").innerHTML = `
-                <div class="glass p-3 md:p-4 rounded-2xl min-w-[70px] md:min-w-[90px] shadow-sm"><span class="block text-3xl md:text-5xl font-cinzel text-sky-blue">${days}</span><span class="text-[10px] uppercase tracking-widest">Días</span></div>
-                <div class="glass p-3 md:p-4 rounded-2xl min-w-[70px] md:min-w-[90px] shadow-sm"><span class="block text-3xl md:text-5xl font-cinzel text-sky-blue">${hours}</span><span class="text-[10px] uppercase tracking-widest">Hrs</span></div>
-                <div class="glass p-3 md:p-4 rounded-2xl min-w-[70px] md:min-w-[90px] shadow-sm"><span class="block text-3xl md:text-5xl font-cinzel text-sky-blue">${minutes}</span><span class="text-[10px] uppercase tracking-widest">Min</span></div>
-                <div class="glass p-3 md:p-4 rounded-2xl min-w-[70px] md:min-w-[90px] shadow-sm"><span class="block text-3xl md:text-5xl font-cinzel text-sky-blue">${seconds}</span><span class="text-[10px] uppercase tracking-widest">Seg</span></div>
+                <div class="glass p-2.5 rounded-xl min-w-[60px] shadow-sm"><span class="block text-2xl font-cinzel text-sky-accent">${days}</span><span class="text-[9px] uppercase tracking-widest">Días</span></div>
+                <div class="glass p-2.5 rounded-xl min-w-[60px] shadow-sm"><span class="block text-2xl font-cinzel text-sky-accent">${hours}</span><span class="text-[9px] uppercase tracking-widest">Hrs</span></div>
+                <div class="glass p-2.5 rounded-xl min-w-[60px] shadow-sm"><span class="block text-2xl font-cinzel text-sky-accent">${minutes}</span><span class="text-[9px] uppercase tracking-widest">Min</span></div>
+                <div class="glass p-2.5 rounded-xl min-w-[60px] shadow-sm"><span class="block text-2xl font-cinzel text-sky-accent">${seconds}</span><span class="text-[9px] uppercase tracking-widest">Seg</span></div>
             `;
         }, 1000);
 
-        // 5. Parámetros URL y Panel Admin
+        // Parámetros URL y Panel Admin
         const urlParams = new URLSearchParams(window.location.search);
-        
-        // -- Pases y Nombre en RSVP
         const selectPases = document.getElementById('guest-passes');
         let limitePases = urlParams.get('p') ? parseInt(urlParams.get('p')) : MAX_PASES_DEFAULT;
         let nombreInvitado = urlParams.get('n');
@@ -647,11 +590,11 @@
         if(nombreInvitado){
             document.getElementById('greeting-box').classList.remove('hidden');
             document.getElementById('guest-name-display').innerText = nombreInvitado;
-            document.getElementById('guest-name').value = nombreInvitado; // Autocompletar
+            document.getElementById('guest-name').value = nombreInvitado;
         }
 
         if(urlParams.get('p')){
-            document.getElementById('passes-badge').innerText = `${limitePases} Reservados`;
+            document.getElementById('passes-badge').innerText = `${limitePases} Pases`;
             document.getElementById('passes-badge').classList.remove('hidden');
         }
 
@@ -662,7 +605,6 @@
             selectPases.appendChild(option);
         }
 
-        // Lógica de Declinar
         document.getElementById('guest-status').addEventListener('change', function(e){
             if(e.target.value === "No podré asistir"){
                 document.getElementById('passes-container').classList.add('hidden');
@@ -673,12 +615,11 @@
             }
         });
 
-        // -- Admin Panel
         if (urlParams.get('admin') === '1') {
             const btn = document.getElementById('admin-toggle');
             btn.classList.remove('hidden');
             btn.classList.add('flex');
-            
+             
             btn.addEventListener('click', () => {
                 document.getElementById('admin-panel').classList.remove('hidden');
             });
@@ -691,17 +632,13 @@
             const cData = document.getElementById('content-data');
 
             if (tab === 'links') {
-                tLinks.classList.replace('text-gray-500', 'text-sky-blue');
-                tLinks.classList.add('border-sky-blue', 'border-b-2', 'font-bold');
-                tData.classList.replace('text-sky-blue', 'text-gray-500');
-                tData.classList.remove('border-sky-blue', 'border-b-2', 'font-bold');
+                tLinks.className = "flex-1 py-3 text-xs font-montserrat font-bold text-sky-accent border-b-2 border-sky-accent";
+                tData.className = "flex-1 py-3 text-xs font-montserrat text-gray-500 hover:text-charcoal";
                 cLinks.classList.remove('hidden');
                 cData.classList.replace('flex', 'hidden');
             } else {
-                tData.classList.replace('text-gray-500', 'text-sky-blue');
-                tData.classList.add('border-sky-blue', 'border-b-2', 'font-bold');
-                tLinks.classList.replace('text-sky-blue', 'text-gray-500');
-                tLinks.classList.remove('border-sky-blue', 'border-b-2', 'font-bold');
+                tData.className = "flex-1 py-3 text-xs font-montserrat font-bold text-sky-accent border-b-2 border-sky-accent";
+                tLinks.className = "flex-1 py-3 text-xs font-montserrat text-gray-500 hover:text-charcoal";
                 cData.classList.remove('hidden');
                 cData.classList.add('flex');
                 cLinks.classList.add('hidden');
@@ -711,7 +648,7 @@
         function generateLink() {
             let baseUrl = window.location.origin + window.location.pathname;
             let params = new URLSearchParams();
-            
+             
             let name = document.getElementById('link-name').value;
             let pases = document.getElementById('link-passes').value;
 
@@ -719,25 +656,21 @@
             if (pases) params.append('p', pases);
 
             let finalUrl = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
-            
             document.getElementById('result-link').value = finalUrl;
             document.getElementById('generated-link-box').classList.remove('hidden');
         }
 
         function copyGeneratedLink() {
             const url = document.getElementById('result-link').value;
-            navigator.clipboard.writeText(url).then(() => {
-                showToast("Enlace copiado");
-            });
+            navigator.clipboard.writeText(url).then(() => showToast("Enlace copiado"));
         }
 
-        // 6. Galería Interactiva
+        // Galería Interactiva
         let currentImgIdx = 0;
         const imgElement = document.getElementById('gallery-img');
         const counterElement = document.getElementById('gallery-counter');
 
         function updateGallery() {
-            if (GALERIA_FOTOS.length === 0) return;
             imgElement.style.opacity = 0;
             setTimeout(() => {
                 imgElement.src = GALERIA_FOTOS[currentImgIdx];
@@ -745,18 +678,17 @@
                 imgElement.style.opacity = 1;
             }, 300);
         }
-        
+         
         function changeImage(step) {
-            if (GALERIA_FOTOS.length <= 1) return;
             currentImgIdx += step;
             if (currentImgIdx >= GALERIA_FOTOS.length) currentImgIdx = 0;
             if (currentImgIdx < 0) currentImgIdx = GALERIA_FOTOS.length - 1;
             updateGallery();
         }
-        updateGallery(); // Init
+        updateGallery();
     </script>
 
-    <!-- Script de Firebase (Módulo) -->
+    <!-- Script de Firebase (Base de Datos) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -771,123 +703,92 @@
             appId: "1:799680022415:web:d67e08eb796b310a16adfa"
         };
 
-        const isMockMode = firebaseConfig.apiKey === "TU_API_KEY";
-        let app, db, auth;
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
 
-        if (!isMockMode) {
-            app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-        }
-
-        // Prevenir doble registro localmente
-        if(localStorage.getItem('rsvp_sent_template') === 'true'){
+        if(localStorage.getItem('rsvp_sent_mia') === 'true'){
             document.getElementById('rsvp-form').classList.add('hidden');
             document.getElementById('rsvp-success').classList.remove('hidden');
         }
 
-        if (isMockMode) {
-            console.warn("Firebase no está configurado. Usando modo simulación para el RSVP.");
-            
-            document.getElementById('rsvp-form').addEventListener('submit', (e) => {
+        signInAnonymously(auth).then(() => {
+            document.getElementById('rsvp-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const btn = document.getElementById('btn-submit');
                 const originalText = btn.innerText;
                 btn.innerText = "Enviando..."; btn.disabled = true;
 
-                setTimeout(() => {
-                    localStorage.setItem('rsvp_sent_template', 'true');
+                try {
+                    const status = document.getElementById('guest-status').value;
+                    const passes = status === "No podré asistir" ? 0 : parseInt(document.getElementById('guest-passes').value);
+
+                    await addDoc(collection(db, "confirmaciones"), {
+                        nombre: document.getElementById('guest-name').value,
+                        telefono: document.getElementById('guest-phone').value,
+                        estatus: status,
+                        pases: passes,
+                        fecha: serverTimestamp()
+                    });
+                     
+                    localStorage.setItem('rsvp_sent_mia', 'true');
                     document.getElementById('rsvp-form').classList.add('hidden');
                     document.getElementById('rsvp-success').classList.remove('hidden');
-                    if (window.showToast) window.showToast("¡Confirmación enviada! (Simulación)");
-                }, 1000);
+                    showToast("¡Confirmación enviada con éxito!");
+                } catch (error) {
+                    console.error("Error BD: ", error);
+                    showToast("Error de conexión. Intenta de nuevo.");
+                    btn.innerText = originalText; btn.disabled = false;
+                }
             });
-        } else {
-            // Iniciar sesión anónima obligatoria
-            signInAnonymously(auth).then(() => {
-                
-                // 1. Guardar Confirmación
-                document.getElementById('rsvp-form').addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const btn = document.getElementById('btn-submit');
-                    const originalText = btn.innerText;
-                    btn.innerText = "Enviando..."; btn.disabled = true;
 
-                    try {
-                        const status = document.getElementById('guest-status').value;
-                        const passes = status === "No podré asistir" ? 0 : parseInt(document.getElementById('guest-passes').value);
+            if (new URLSearchParams(window.location.search).get('admin') === '1') {
+                const listEl = document.getElementById('guests-list');
+                const totalEl = document.getElementById('total-passes');
+                let allData = [];
+                 
+                onSnapshot(collection(db, "confirmaciones"), (snapshot) => {
+                    listEl.innerHTML = "";
+                    let suma = 0;
+                    allData = [];
+                     
+                    snapshot.forEach((doc) => {
+                        const data = doc.data();
+                        allData.push(data);
+                        if(data.estatus !== "No podré asistir") suma += (data.pases || 0);
+                         
+                        const colorEstatus = data.estatus === "No podré asistir" ? "text-red-500 bg-red-50" : "text-green-600 bg-green-50";
 
-                        await addDoc(collection(db, "confirmaciones"), {
-                            nombre: document.getElementById('guest-name').value,
-                            telefono: document.getElementById('guest-phone').value,
-                            estatus: status,
-                            pases: passes,
-                            fecha: serverTimestamp()
-                        });
-                        
-                        localStorage.setItem('rsvp_sent_template', 'true');
-                        document.getElementById('rsvp-form').classList.add('hidden');
-                        document.getElementById('rsvp-success').classList.remove('hidden');
-                        if(window.showToast) window.showToast("¡Confirmación enviada!");
-                    } catch (error) {
-                        console.error("Error BD: ", error);
-                        if(window.showToast) window.showToast("Error de conexión. Intenta de nuevo.");
-                        btn.innerText = originalText; btn.disabled = false;
-                    }
+                        listEl.innerHTML += `
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="p-3 font-bold text-gray-700">${data.nombre}</td>
+                                <td class="p-3">${data.telefono}</td>
+                                <td class="p-3 text-center font-bold">${data.estatus === "No podré asistir" ? '-' : data.pases}</td>
+                                <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] ${colorEstatus}">${data.estatus}</span></td>
+                            </tr>
+                        `;
+                    });
+                    totalEl.innerText = suma;
                 });
 
-                // 2. Leer datos para Admin
-                if (new URLSearchParams(window.location.search).get('admin') === '1') {
-                    const listEl = document.getElementById('guests-list');
-                    const totalEl = document.getElementById('total-passes');
-                    let allData = [];
-                    
-                    onSnapshot(collection(db, "confirmaciones"), (snapshot) => {
-                        listEl.innerHTML = "";
-                        let suma = 0;
-                        allData = [];
-                        
-                        snapshot.forEach((doc) => {
-                            const data = doc.data();
-                            allData.push(data);
-                            if(data.estatus !== "No podré asistir") suma += (data.pases || 0);
-                            
-                            const colorEstatus = data.estatus === "No podré asistir" ? "text-red-500 bg-red-50" : "text-green-600 bg-green-50";
-
-                            listEl.innerHTML += `
-                                <tr class="border-b hover:bg-gray-50">
-                                    <td class="p-4 font-bold text-gray-700">${data.nombre}</td>
-                                    <td class="p-4">${data.telefono}</td>
-                                    <td class="p-4 text-center font-bold">${data.estatus === "No podré asistir" ? '-' : data.pases}</td>
-                                    <td class="p-4"><span class="px-2 py-1 rounded text-xs ${colorEstatus}">${data.estatus}</span></td>
-                                </tr>
-                            `;
-                        });
-                        totalEl.innerText = suma;
+                document.getElementById('btn-export').addEventListener('click', () => {
+                    if(allData.length === 0) return showToast("No hay datos para exportar");
+                     
+                    let csvContent = "data:text/csv;charset=utf-8,Nombre,Telefono,Estatus,Pases\n";
+                    allData.exports?.() || allData.forEach(row => {
+                        csvContent += `"${row.nombre}","${row.telefono}","${row.estatus}","${row.pases}"\n`;
                     });
-
-                    // Exportar CSV
-                    document.getElementById('btn-export').addEventListener('click', () => {
-                        if(allData.length === 0) return window.showToast ? window.showToast("No hay datos para exportar") : alert("No hay datos");
-                        
-                        let csvContent = "data:text/csv;charset=utf-8,Nombre,Telefono,Estatus,Pases\n";
-                        allData.forEach(row => {
-                            csvContent += `"${row.nombre}","${row.telefono}","${row.estatus}","${row.pases}"\n`;
-                        });
-                        
-                        const encodedUri = encodeURI(csvContent);
-                        const link = document.createElement("a");
-                        link.setAttribute("href", encodedUri);
-                        link.setAttribute("download", "lista_invitados.csv");
-                        document.body.appendChild(link);
-                        link.click();
-                        link.remove();
-                    });
-                }
-            }).catch((error) => {
-                console.error("Error de autenticación Firebase: ", error);
-            });
-        }
+                     
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", "invitados_mia_xv.csv");
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                });
+            }
+        });
     </script>
 </body>
 </html>
