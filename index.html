@@ -40,10 +40,24 @@
 
     <style>
         /* Estilos base y utilidades */
-        body { background-color: #FAFAF8; color: #404040; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        body { background-color: #EAEAEA; color: #404040; font-family: 'Montserrat', sans-serif; }
         h1, h2, h3, .font-cinzel { font-family: 'Cinzel', serif; }
         .font-cormorant { font-family: 'Cormorant Garamond', serif; }
         
+        /* Contenedor Móvil para PC */
+        #mobile-wrapper {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: #FAFAF8;
+            position: relative;
+            overflow-x: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.15);
+            /* Transforma el contenedor en el "viewport" para los elementos fijos (fixed) */
+            transform: translateZ(0); 
+        }
+
         /* Tapiz de fondo general */
         .bg-pattern {
             background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
@@ -84,13 +98,13 @@
         #toast.show { transform: translateY(0); opacity: 1; }
     </style>
 </head>
-<body class="bg-pattern antialiased relative">
+<body class="antialiased bg-gray-200">
 
-    <!-- ================= 1. SPLASH SCREEN (SOBRE) ================= -->
-    <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-off-white transition-opacity duration-1000">
-        <svg class="w-16 h-16 text-sky-blue mb-6 animate-pulse-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4"></path></svg>
-        <p class="font-cinzel text-sm md:text-base tracking-[0.4em] uppercase mb-2 text-sky-blue">Mis XV Años</p>
-        <h1 class="text-6xl md:text-7xl text-charcoal mb-10 text-center px-4 leading-tight font-great-vibes">
+    <div id="mobile-wrapper" class="bg-pattern text-charcoal">
+
+        <!-- ================= 1. SPLASH SCREEN (SOBRE) ================= -->
+        <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-off-white transition-opacity duration-1000">
+            <svg class="w-16 h-16 text-sky-blue mb-6 animate-pulse-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4"></path></svg>
             Mia Daniela
         </h1>
         <button id="btn-abrir" class="px-8 py-3 bg-charcoal text-white font-montserrat text-xs tracking-widest uppercase rounded-full hover:bg-sky-blue transition duration-300 shadow-md">
@@ -102,20 +116,20 @@
     <div id="main-content" class="hidden">
 
         <!-- ================= 2. HERO (PORTADA) ================= -->
-        <section class="relative w-full h-screen flex flex-col items-center justify-between pb-10 overflow-hidden">
+        <section class="relative w-full h-screen flex flex-col items-center justify-end pb-12 overflow-hidden">
             <!-- PORTADA ACTUALIZADA (DESVANECIDA HACIA ABAJO) -->
             <div class="absolute inset-0 z-0 mask-bottom">
                 <img src="https://drive.google.com/thumbnail?id=1eGeb_sfGqnh3XdX88SLiogxWy3Cges8_&sz=w1200" alt="Portada" class="w-full h-full object-cover object-top">
             </div>
             
-            <div class="relative z-30 w-full text-center mt-20 px-4">
-                <p class="font-cinzel text-sm md:text-base tracking-[0.4em] uppercase mb-2 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">Mis XV Años</p>
-                <h1 class="text-7xl md:text-8xl text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)] mb-2 font-great-vibes leading-tight">
+            <div class="relative z-30 w-full text-center px-4 mb-6">
+                <p class="font-cinzel text-sm md:text-base tracking-[0.4em] uppercase mb-1 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">Mis XV Años</p>
+                <h1 class="text-6xl text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)] font-great-vibes leading-normal py-2">
                     Mia Daniela
                 </h1>
             </div>
             
-            <div class="relative z-30 flex flex-col items-center animate-bounce mt-auto">
+            <div class="relative z-30 flex flex-col items-center animate-bounce">
                 <p class="font-montserrat text-xs tracking-widest text-white mb-2 font-semibold drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">Deslizar</p>
                 <i class="fa-solid fa-chevron-down text-white text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"></i>
             </div>
@@ -131,13 +145,13 @@
 
         <!-- ================= BANNER TRANSICIÓN 1 ================= -->
         <div class="w-full relative h-[60vh] md:h-[80vh] mask-both reveal">
-            <img src="https://drive.google.com/thumbnail?id=1m3JQ_RRfk_bYg153lRPCH73a3x58kPRe&sz=w1200" class="w-full h-full object-cover object-center" alt="Transición">
+            <img src="https://drive.google.com/thumbnail?id=10iMgRrMZnk5KrhPqTOPatQQ6ZEpJ38HK&sz=w1200" class="w-full h-full object-cover object-center" alt="Transición">
         </div>
 
         <!-- ================= 4. CUENTA REGRESIVA ================= -->
         <section class="relative py-24 px-4 overflow-hidden reveal">
             <div class="absolute inset-0 z-0 mask-both">
-                <img src="https://drive.google.com/thumbnail?id=1m3JQ_RRfk_bYg153lRPCH73a3x58kPRe&sz=w1200" class="w-full h-full object-cover opacity-60" alt="Fondo Timer">
+                <img src="https://drive.google.com/thumbnail?id=1m3JQ_RRfk_bYg153lRPCH73a3x58kPRe&sz=w1200" class="w-full h-full object-cover opacity-90" alt="Fondo Timer">
             </div>
             
             <div class="relative z-10 max-w-4xl mx-auto text-center">
@@ -520,6 +534,8 @@
         </div>
     </div>
 
+    </div> <!-- Cierre de mobile-wrapper -->
+
     <!-- ================= SCRIPTS ================= -->
     
     <!-- Script de Lógica Frontend -->
@@ -533,7 +549,6 @@
         
         // Galería de fotos con formato thumbnail para saltar la protección de Google Drive
         let GALERIA_FOTOS = [
-            "https://drive.google.com/thumbnail?id=10iMgRrMZnk5KrhPqTOPatQQ6ZEpJ38HK&sz=w1200",
             "https://drive.google.com/thumbnail?id=1VKZhSRYuwaYDuzpYgJ-gVwSZfrET2bCl&sz=w1200",
             "https://drive.google.com/thumbnail?id=12AH07sjDK5d2rVhXnlhl7F999FJlUB5z&sz=w1200",
             "https://drive.google.com/thumbnail?id=1SWfyAmgSdLoOH5Cc5LGQk_H1_KkYesmm&sz=w1200",
