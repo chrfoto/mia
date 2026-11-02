@@ -112,7 +112,7 @@
             <!-- ================= 2. HERO (PORTADA) ================= -->
             <section class="relative w-full h-[90vh] flex flex-col items-center justify-between pb-8">
                 <div class="absolute inset-0 z-0">
-                    <img src="https://drive.google.com/uc?export=view&id=1eGeb_sfGqnh3XdX88SLiogxWy3Cges8_" alt="Portada Mia" class="w-full h-full object-cover object-top">
+                    <img src="https://lh3.googleusercontent.com/d/1eGeb_sfGqnh3XdX88SLiogxWy3Cges8_" alt="Portada Mia" class="w-full h-full object-cover object-top">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#FAFAF8] via-transparent to-black/30"></div>
                 </div>
                  
@@ -151,7 +151,7 @@
 
             <!-- ================= BANNER TRANSICIÓN 1 (B/N) ================= -->
             <div class="w-full relative h-[65vh] mask-dreamy reveal my-4">
-                <img src="https://drive.google.com/uc?export=view&id=1m3JQ_RRfk_bYg153lRPCH73a3x58kPRe" class="w-full h-full object-cover" alt="Mia Blanco y Negro">
+                <img src="https://lh3.googleusercontent.com/d/1m3JQ_RRfk_bYg153lRPCH73a3x58kPRe" class="w-full h-full object-cover" alt="Mia Blanco y Negro">
             </div>
 
             <!-- ================= 4. PADRES Y PADRINOS ================= -->
@@ -173,7 +173,7 @@
 
             <!-- ================= BANNER TRANSICIÓN 2 ================= -->
             <div class="w-full relative h-[65vh] mask-dreamy reveal my-4">
-                <img src="https://drive.google.com/uc?export=view&id=1suoLSCN3OPA8KSl7tFNQNzwVR6GvlI7_" class="w-full h-full object-cover" alt="Mia Transición 2">
+                <img src="https://lh3.googleusercontent.com/d/1suoLSCN3OPA8KSl7tFNQNzwVR6GvlI7_" class="w-full h-full object-cover" alt="Mia Transición 2">
             </div>
 
             <!-- ================= 5. LA CELEBRACIÓN (LUGARES) ================= -->
@@ -264,7 +264,7 @@
 
             <!-- ================= BANNER TRANSICIÓN 3 ================= -->
             <div class="w-full relative h-[65vh] mask-dreamy reveal my-4">
-                <img src="https://drive.google.com/uc?export=view&id=1WHTehj6t76LDxOQgLMi4lypo-43GTCC4" class="w-full h-full object-cover" alt="Mia Transición 3">
+                <img src="https://lh3.googleusercontent.com/d/1WHTehj6t76LDxOQgLMi4lypo-43GTCC4" class="w-full h-full object-cover" alt="Mia Transición 3">
             </div>
 
             <!-- ================= 7. CÓDIGO DE VESTIMENTA ================= -->
@@ -395,7 +395,7 @@
             <!-- ================= 11. FOOTER (FOTO FINAL) ================= -->
             <footer class="relative w-full h-[65vh] flex flex-col items-center justify-end pb-12 text-center">
                 <div class="absolute inset-0 z-0">
-                    <img src="https://drive.google.com/uc?export=view&id=1gEWgAPQVUPJApZ0gfwYspUkfvxVcjP2v" class="w-full h-full object-cover" alt="Pie de invitación Mia">
+                    <img src="https://lh3.googleusercontent.com/d/1gEWgAPQVUPJApZ0gfwYspUkfvxVcjP2v" class="w-full h-full object-cover" alt="Pie de invitación Mia">
                     <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent"></div>
                 </div>
                 <div class="relative z-10 px-4">
@@ -480,315 +480,4 @@
                                 <th class="p-3">Estatus</th>
                             </tr>
                         </thead>
-                        <tbody id="guests-list" class="font-montserrat text-xs divide-y divide-gray-100">
-                            <!-- JS llena esto -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= SCRIPTS ================= -->
-    <script>
-        const AUDIO_URL_DROPBOX = ""; 
-        const FECHA_CUENTA_REGRESIVA = "Dec 19, 2026 16:00:00"; 
-        const MAX_PASES_DEFAULT = 5; 
-         
-        // Galería de fotos restante (con los enlaces limpios y sin duplicados)
-        const GALERIA_FOTOS = [
-            "https://drive.google.com/uc?export=view&id=10iMgRrMZnk5KrhPqTOPatQQ6ZEpJ38HK",
-            "https://drive.google.com/uc?export=view&id=1VKZhSRYuwaYDuzpYgJ-gVwSZfrET2bCl",
-            "https://drive.google.com/uc?export=view&id=12AH07sjDK5d2rVhXnlhl7F999FJlUB5z",
-            "https://drive.google.com/uc?export=view&id=1SWfyAmgSdLoOH5Cc5LGQk_H1_KkYesmm",
-            "https://drive.google.com/uc?export=view&id=1pfWMujm4bJQ6xcvZJ6Vir-n1s8VHje0A",
-            "https://drive.google.com/uc?export=view&id=1VT-VMmg6F2cDr3XpGr0dzf1oqAe9Qij6",
-            "https://drive.google.com/uc?export=view&id=1B8d1ML9YDozuPpcSDTR-I6SCryLR-dX5",
-            "https://drive.google.com/uc?export=view&id=1Sz3L3_eSuRn7hlzNXVAeLtku1e50dPN4",
-            "https://drive.google.com/uc?export=view&id=1ysfYqeVz_JiGHnACsvQ0Nb-ObIKZ9Riw"
-        ];
-
-        // Manejo de Audio
-        const bgAudio = document.getElementById('bg-audio');
-        let isPlaying = false;
-
-        document.getElementById('btn-abrir').addEventListener('click', () => {
-            document.getElementById('splash-screen').classList.add('fade-out');
-            setTimeout(() => {
-                document.getElementById('splash-screen').classList.add('hidden');
-                document.getElementById('main-content').classList.remove('hidden');
-                if(AUDIO_URL_DROPBOX) {
-                    document.getElementById('audio-btn').classList.remove('hidden');
-                    bgAudio.src = AUDIO_URL_DROPBOX.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('dl=0', 'dl=1');
-                    bgAudio.play().catch(e => console.log("Auto-play blocked"));
-                    isPlaying = true;
-                }
-            }, 800);
-        });
-
-        document.getElementById('audio-btn').addEventListener('click', () => {
-            if (isPlaying) {
-                bgAudio.pause();
-                document.getElementById('audio-icon').classList.replace('fa-volume-high', 'fa-volume-xmark');
-            } else {
-                bgAudio.play();
-                document.getElementById('audio-icon').classList.replace('fa-volume-xmark', 'fa-volume-high');
-            }
-            isPlaying = !isPlaying;
-        });
-
-        // Notificaciones Toast
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-msg').innerText = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
-        // Scroll Reveal
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // Cuenta Regresiva
-        const countDownDate = new Date(FECHA_CUENTA_REGRESIVA).getTime();
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-             
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "<p class='text-lg font-cinzel text-sky-accent'>¡Llegó el gran día!</p>";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML = `
-                <div class="glass p-2.5 rounded-xl min-w-[60px] shadow-sm"><span class="block text-2xl font-cinzel text-sky-accent">${days}</span><span class="text-[9px] uppercase tracking-widest">Días</span></div>
-                <div class="glass p-2.5 rounded-xl min-w-[60px] shadow-sm"><span class="block text-2xl font-cinzel text-sky-accent">${hours}</span><span class="text-[9px] uppercase tracking-widest">Hrs</span></div>
-                <div class="glass p-2.5 rounded-xl min-w-[60px] shadow-sm"><span class="block text-2xl font-cinzel text-sky-accent">${minutes}</span><span class="text-[9px] uppercase tracking-widest">Min</span></div>
-                <div class="glass p-2.5 rounded-xl min-w-[60px] shadow-sm"><span class="block text-2xl font-cinzel text-sky-accent">${seconds}</span><span class="text-[9px] uppercase tracking-widest">Seg</span></div>
-            `;
-        }, 1000);
-
-        // Parámetros URL y Panel Admin
-        const urlParams = new URLSearchParams(window.location.search);
-        const selectPases = document.getElementById('guest-passes');
-        let limitePases = urlParams.get('p') ? parseInt(urlParams.get('p')) : MAX_PASES_DEFAULT;
-        let nombreInvitado = urlParams.get('n');
-
-        if(nombreInvitado){
-            document.getElementById('greeting-box').classList.remove('hidden');
-            document.getElementById('guest-name-display').innerText = nombreInvitado;
-            document.getElementById('guest-name').value = nombreInvitado;
-        }
-
-        if(urlParams.get('p')){
-            document.getElementById('passes-badge').innerText = `${limitePases} Pases`;
-            document.getElementById('passes-badge').classList.remove('hidden');
-        }
-
-        for (let i = 1; i <= limitePases; i++) {
-            const option = document.createElement('option');
-            option.value = i;
-            option.text = `${i} Pase${i > 1 ? 's' : ''}`;
-            selectPases.appendChild(option);
-        }
-
-        document.getElementById('guest-status').addEventListener('change', function(e){
-            if(e.target.value === "No podré asistir"){
-                document.getElementById('passes-container').classList.add('hidden');
-                document.getElementById('guest-passes').value = "0"; 
-            } else {
-                document.getElementById('passes-container').classList.remove('hidden');
-                document.getElementById('guest-passes').value = "1";
-            }
-        });
-
-        if (urlParams.get('admin') === '1') {
-            const btn = document.getElementById('admin-toggle');
-            btn.classList.remove('hidden');
-            btn.classList.add('flex');
-             
-            btn.addEventListener('click', () => {
-                document.getElementById('admin-panel').classList.remove('hidden');
-            });
-        }
-
-        function switchAdminTab(tab) {
-            const tLinks = document.getElementById('tab-links');
-            const tData = document.getElementById('tab-data');
-            const cLinks = document.getElementById('content-links');
-            const cData = document.getElementById('content-data');
-
-            if (tab === 'links') {
-                tLinks.className = "flex-1 py-3 text-xs font-montserrat font-bold text-sky-accent border-b-2 border-sky-accent";
-                tData.className = "flex-1 py-3 text-xs font-montserrat text-gray-500 hover:text-charcoal";
-                cLinks.classList.remove('hidden');
-                cData.classList.replace('flex', 'hidden');
-            } else {
-                tData.className = "flex-1 py-3 text-xs font-montserrat font-bold text-sky-accent border-b-2 border-sky-accent";
-                tLinks.className = "flex-1 py-3 text-xs font-montserrat text-gray-500 hover:text-charcoal";
-                cData.classList.remove('hidden');
-                cData.classList.add('flex');
-                cLinks.classList.add('hidden');
-            }
-        }
-
-        function generateLink() {
-            let baseUrl = window.location.origin + window.location.pathname;
-            let params = new URLSearchParams();
-             
-            let name = document.getElementById('link-name').value;
-            let pases = document.getElementById('link-passes').value;
-
-            if (name) params.append('n', name);
-            if (pases) params.append('p', pases);
-
-            let finalUrl = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
-            document.getElementById('result-link').value = finalUrl;
-            document.getElementById('generated-link-box').classList.remove('hidden');
-        }
-
-        function copyGeneratedLink() {
-            const url = document.getElementById('result-link').value;
-            navigator.clipboard.writeText(url).then(() => showToast("Enlace copiado"));
-        }
-
-        // Galería Interactiva
-        let currentImgIdx = 0;
-        const imgElement = document.getElementById('gallery-img');
-        const counterElement = document.getElementById('gallery-counter');
-
-        function updateGallery() {
-            imgElement.style.opacity = 0;
-            setTimeout(() => {
-                imgElement.src = GALERIA_FOTOS[currentImgIdx];
-                counterElement.innerText = `${currentImgIdx + 1} / ${GALERIA_FOTOS.length}`;
-                imgElement.style.opacity = 1;
-            }, 300);
-        }
-         
-        function changeImage(step) {
-            currentImgIdx += step;
-            if (currentImgIdx >= GALERIA_FOTOS.length) currentImgIdx = 0;
-            if (currentImgIdx < 0) currentImgIdx = GALERIA_FOTOS.length - 1;
-            updateGallery();
-        }
-        updateGallery();
-    </script>
-
-    <!-- Script de Firebase (Base de Datos) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAmLreO5ropYFctXJRnt6cdW2DGkL8g_mQ",
-            authDomain: "mia-29e39.firebaseapp.com",
-            projectId: "mia-29e39",
-            storageBucket: "mia-29e39.firebasestorage.app",
-            messagingSenderId: "799680022415",
-            appId: "1:799680022415:web:d67e08eb796b310a16adfa"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        if(localStorage.getItem('rsvp_sent_mia') === 'true'){
-            document.getElementById('rsvp-form').classList.add('hidden');
-            document.getElementById('rsvp-success').classList.remove('hidden');
-        }
-
-        signInAnonymously(auth).then(() => {
-            document.getElementById('rsvp-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const btn = document.getElementById('btn-submit');
-                const originalText = btn.innerText;
-                btn.innerText = "Enviando..."; btn.disabled = true;
-
-                try {
-                    const status = document.getElementById('guest-status').value;
-                    const passes = status === "No podré asistir" ? 0 : parseInt(document.getElementById('guest-passes').value);
-
-                    await addDoc(collection(db, "confirmaciones"), {
-                        nombre: document.getElementById('guest-name').value,
-                        telefono: document.getElementById('guest-phone').value,
-                        estatus: status,
-                        pases: passes,
-                        fecha: serverTimestamp()
-                    });
-                     
-                    localStorage.setItem('rsvp_sent_mia', 'true');
-                    document.getElementById('rsvp-form').classList.add('hidden');
-                    document.getElementById('rsvp-success').classList.remove('hidden');
-                    showToast("¡Confirmación enviada con éxito!");
-                } catch (error) {
-                    console.error("Error BD: ", error);
-                    showToast("Error de conexión. Intenta de nuevo.");
-                    btn.innerText = originalText; btn.disabled = false;
-                }
-            });
-
-            if (new URLSearchParams(window.location.search).get('admin') === '1') {
-                const listEl = document.getElementById('guests-list');
-                const totalEl = document.getElementById('total-passes');
-                let allData = [];
-                 
-                onSnapshot(collection(db, "confirmaciones"), (snapshot) => {
-                    listEl.innerHTML = "";
-                    let suma = 0;
-                    allData = [];
-                     
-                    snapshot.forEach((doc) => {
-                        const data = doc.data();
-                        allData.push(data);
-                        if(data.estatus !== "No podré asistir") suma += (data.pases || 0);
-                         
-                        const colorEstatus = data.estatus === "No podré asistir" ? "text-red-500 bg-red-50" : "text-green-600 bg-green-50";
-
-                        listEl.innerHTML += `
-                            <tr class="border-b hover:bg-gray-50">
-                                <td class="p-3 font-bold text-gray-700">${data.nombre}</td>
-                                <td class="p-3">${data.telefono}</td>
-                                <td class="p-3 text-center font-bold">${data.estatus === "No podré asistir" ? '-' : data.pases}</td>
-                                <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] ${colorEstatus}">${data.estatus}</span></td>
-                            </tr>
-                        `;
-                    });
-                    totalEl.innerText = suma;
-                });
-
-                document.getElementById('btn-export').addEventListener('click', () => {
-                    if(allData.length === 0) return showToast("No hay datos para exportar");
-                     
-                    let csvContent = "data:text/csv;charset=utf-8,Nombre,Telefono,Estatus,Pases\n";
-                    allData.exports?.() || allData.forEach(row => {
-                        csvContent += `"${row.nombre}","${row.telefono}","${row.estatus}","${row.pases}"\n`;
-                    });
-                     
-                    const encodedUri = encodeURI(csvContent);
-                    const link = document.createElement("a");
-                    link.setAttribute("href", encodedUri);
-                    link.setAttribute("download", "invitados_mia_xv.csv");
-                    document.body.appendChild(link);
-                    link.click();
-                    link.remove();
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+                        <tbody id="guests-
